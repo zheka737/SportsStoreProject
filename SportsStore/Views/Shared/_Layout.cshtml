@@ -7,6 +7,12 @@
         content="width=device-width"
     />
     <title>SportsStore</title>
+    <environment names="Development">
+        <script src="~/dist/main.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/dist/main.js" asp-append-version="true"></script>
+    </environment>
 </head>
 
 <body>
