@@ -7,13 +7,8 @@
         content="width=device-width"
     />
     <title>SportsStore</title>
-    <environment names="Development">
-        <script src="~/dist/main.js"></script>
-    </environment>
-    <environment names="Staging,Production">
-        <script src="~/dist/main.js" asp-append-version="true"></script>
-    </environment>
-    <link rel="stylesheet" href="/css/font-awesome.min.css" />
+
+    <script asp-src-include="~/dist/main.*.js"></script>
 </head>
 
 <body>

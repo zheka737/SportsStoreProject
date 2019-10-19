@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = function (env) {
 
@@ -13,14 +14,14 @@ module.exports = function (env) {
     },
     output: {
       path: path.join(__dirname, 'wwwroot/dist'),
-      filename: '[name].js'
+      filename: '[name].[contenthash].js'
     },
-    devtool: 'eval-source-map',
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
     plugins: [
-      new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' })
+      new CleanWebpackPlugin(),
+      new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }),
     ],
     module: {
       rules: [
