@@ -9,12 +9,14 @@ module.exports = function (env) {
 
   // Setup base config for all environments
   var config = {
+    mode: 'development',
     entry: {
       main: './Client/js/main'
     },
     output: {
       path: path.join(__dirname, 'wwwroot/dist'),
-      filename: '[name].[contenthash].js'
+      filename: '[name].[hash].js',
+      publicPath: '/'
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx']
