@@ -21,8 +21,15 @@ module.exports = function (env) {
     },
     plugins: [
       new CleanWebpackPlugin(),
-      new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }),
+      new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+        "window.jQuery": "jquery",
+        "Tether": 'tether'
+    })
     ],
+    devtool: 'inline-source-map',
+
     module: {
       rules: [
         { test: /\.css?$/, use: ['style-loader', 'css-loader'] },
