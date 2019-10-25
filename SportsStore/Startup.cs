@@ -33,6 +33,7 @@ namespace SportsStore
             services.AddMvc();
             services.AddMemoryCache();
             services.AddSession();
+            services.AddTransient<IOrderRepository, EFOrderRepository>();
 
         }
 
