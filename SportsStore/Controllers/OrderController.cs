@@ -42,8 +42,15 @@ namespace SportsStore.Controllers
 
         [HttpPost]
         public IActionResult MarkShipped(int orderID){
-            Order order = repository.
+            Order order = repository.Orders
+                .FirstOrDefault(o => o.OrderID == orderID);
 
+            if(order != null){
+                order.Shipped = true;
+                repository.SaveOrder(order);
+            }
+
+            return RedirectToAction(nameof(List));
         }
     }
 }
