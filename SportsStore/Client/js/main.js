@@ -4,5 +4,7 @@ import 'jquery';
 import 'bootstrap';
 import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
-import './../css/main.css'
+import './../css/main.css';
+import 'jquery-validation';
+import 'jquery-validation-unobtrusive';
 //w211
