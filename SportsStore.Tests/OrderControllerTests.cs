@@ -56,7 +56,8 @@ namespace SportsStore.Tests
         }
 
         [Fact]
-        public void Cannot_Checkout_SubmitOrder() {
+        public void Cannot_Checkout_SubmitOrder()
+        {
             //Arrange
             Mock<IOrderRepository> mock = new Mock<IOrderRepository>();
             Cart cart = new Cart();
@@ -76,26 +77,57 @@ namespace SportsStore.Tests
         public void TestName()
         {
             Mock<TestClass1> mock = new Mock<TestClass1>();
-            mock.Object.doSomething("fff");
+            mock.Object.testMethod("fff");
 
-            mock.Verify(e => e.doSomething(It.Is<string>(y => y == "fff")));
+            mock.Verify(e => e.testMethod(It.Is<string>(y => y == "fff")));
         }
 
         [Fact]
         public void TestName2()
         {
-           Assert.True(false);
-           Assert.True(true);
+            Mock<IFoo> mock = new Mock<IFoo>();
+            // mock.Setup(e => e.DoSomething(It.IsIn<string>(new string[] {"ping", "ping2"}))).Returns(true);
+            // mock.Setup(e => e.DoSomething(It.IsIn<string>(new string[] {"ping3"}))).Returns(true);
+            // Assert.True(mock.Object.DoSomething("ping4"));
+        
+            mock.Setup(x => x.DoSomethingStringy(It.IsAny<string>())).Returns((string s) => s.ToUpper());
+
+            var a = mock.Object.DoSomethingStringy("ddd");
         }
 
     }
 
     public class TestClass1
     {
-        public virtual void doSomething(string par)
+        public virtual void testMethod(string par)
         {
             System.Console.WriteLine();
         }
+    }
+
+    public interface IFoo
+    {
+        Bar Bar { get; set; }
+        string Name { get; set; }
+        int Value { get; set; }
+        bool DoSomething(string value);
+        bool DoSomething(int number, string value);
+        string DoSomethingStringy(string value);
+        bool TryParse(string value, out string outputValue);
+        bool Submit(ref Bar bar);
+        int GetCount();
+        bool Add(int value);
+    }
+
+    public class Bar
+    {
+        public virtual Baz Baz { get; set; }
+        public virtual bool Submit() { return false; }
+    }
+
+    public class Baz
+    {
+        public virtual string Name { get; set; }
     }
 
 
